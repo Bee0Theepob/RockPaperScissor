@@ -1,26 +1,25 @@
 package application;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.layout.StackPane;
 import javafx.scene.Scene;
 import javafx.scene.canvas.*;
 import javafx.scene.paint.Color;
 import javafx.animation.*;
 import javafx.util.Duration;
-import javafx.scene.input.KeyCode;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
 public class MainApplication extends Application{
 	private static final int HEIGHT =750;
 	private static final int WIDTH = 1000;
-	public static List<Base> objects = new ArrayList<>();
+	public static List<object> objects = new ArrayList<>();
+	public static int RockHP=50,ScissorHP=50,PaperHP=50;
 	public static int Xspeed = 1;
 	
 	public static void main(String[] args){
@@ -50,9 +49,9 @@ public class MainApplication extends Application{
 		btnReset.setOnAction((e)->{
 			objects.clear();
 			for(int i=0;i<50;i++){
-				objects.add(new Base("Rock"));
-				objects.add(new Base("Paper"));
-				objects.add(new Base("Scissor"));
+				objects.add(new object("Rock"));
+				objects.add(new object("Paper"));
+				objects.add(new object("Scissor"));
 			}
 		});
 		btnReset.setTranslateX(30);
@@ -63,9 +62,9 @@ public class MainApplication extends Application{
 
 
 		for(int i=0;i<50;i++){
-			objects.add(new Base("Rock"));
-			objects.add(new Base("Paper"));
-			objects.add(new Base("Scissor"));
+			objects.add(new object("Rock"));
+			objects.add(new object("Paper"));
+			objects.add(new object("Scissor"));
 		}
 		
 		Timeline loop = new Timeline(new KeyFrame(Duration.millis(1000.0/40), e -> update(gc)));
@@ -81,6 +80,21 @@ public class MainApplication extends Application{
 
 	
 	private void update(GraphicsContext gc){
+		System.out.println(RockHP+" "+PaperHP+" "+ScissorHP);
+		if(RockHP==150){
+			System.out.println("Rock win");
+			Platform.exit();
+		}
+		else if(PaperHP==150){
+			System.out.println("Paper win");
+			Platform.exit();
+		}
+		else if(ScissorHP==150){
+			System.out.println("Scissor win");
+			Platform.exit();
+		}
+
+
 		gc.clearRect(0, 0, WIDTH, HEIGHT);
 		gc.setFill(Color.WHITE);
 		gc.fillRect(0, 0, WIDTH, HEIGHT);
@@ -101,6 +115,9 @@ public class MainApplication extends Application{
 				}
 			}
 		}
+
+
+
 
 
 
