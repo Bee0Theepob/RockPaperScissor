@@ -108,9 +108,9 @@ public class Base {
         }
 
         this.y += dy*Math.sin(angle) * speed * MainApplication.Xspeed;
-        if(this.getY() > 725){
+        if(this.getY() > 720){
             dy*=-1;
-            this.y=725;
+            this.y=720;
         }
         if(this.getY()<0){
             dy*=-1;

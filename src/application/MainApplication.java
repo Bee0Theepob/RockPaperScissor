@@ -20,7 +20,6 @@ import java.util.List;
 public class MainApplication extends Application{
 	private static final int HEIGHT =750;
 	private static final int WIDTH = 1000;
-	private Map<KeyCode, Boolean> keys = new HashMap<>();
 	public static List<Base> objects = new ArrayList<>();
 	public static int Xspeed = 1;
 	
