@@ -67,9 +67,15 @@ public class MainApplication extends Application{
 			objects.add(new object("Scissor"));
 		}
 		
-		Timeline loop = new Timeline(new KeyFrame(Duration.millis(1000.0/40), e -> update(gc)));
-		loop.setCycleCount(Animation.INDEFINITE);
-		loop.play();
+
+
+		AnimationTimer loop = new AnimationTimer() {
+			@Override
+			public void handle(long l) {
+				update(gc);
+			}
+		};
+		loop.start();
 
 
 		
